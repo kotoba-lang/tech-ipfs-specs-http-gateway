@@ -1,0 +1,15 @@
+{:paths ["src"]
+ ;; Zero runtime deps. Resolution planes, the cache and the HTTP client are all
+ ;; injected, so this library holds no DHT client, no DNS resolver, no registry
+ ;; credentials and no clock — and the whole caching policy is testable without
+ ;; any of them.
+ :deps {}
+ :aliases
+ {:test {:extra-paths ["test"]
+         :extra-deps {io.github.cognitect-labs/test-runner
+                      {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
+         :main-opts ["-m" "cognitect.test-runner"]
+         :exec-fn cognitect.test-runner.api/test}
+  :lint {:replace-deps {clj-kondo/clj-kondo {:mvn/version "2024.11.14"}}
+         :main-opts ["-m" "clj-kondo.main" "--lint" "src" "test"
+                     "--fail-level" "error"]}}}
