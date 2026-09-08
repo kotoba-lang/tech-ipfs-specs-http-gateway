@@ -26,7 +26,7 @@
 
   `parse` reports this as `:redirect` rather than an error, because it *is* the
   correct handling and the caller should emit a 301."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def ^:const namespace-ipfs "ipfs")
 (def ^:const namespace-ipns "ipns")
@@ -74,7 +74,7 @@
   "Can this identifier be a DNS label? A CIDv0 or any mixed-case identifier
   cannot, because DNS is case-insensitive."
   [s]
-  (boolean (and s (= s (str/lower-case s)) (not (cidv0? s)))))
+  (boolean (and s (= s (str/lower s)) (not (cidv0? s)))))
 
 ;; ── query ─────────────────────────────────────────────────────────────────
 
@@ -118,7 +118,7 @@
 (defn- subdomain-parts
   "`bafy….ipfs.example.net` → `[\"bafy…\" \"ipfs\" \"example.net\"]`, or nil."
   [host]
-  (let [labels (str/split (str/lower-case (or host "")) #"\.")]
+  (let [labels (str/split (str/lower (or host "")) #"\.")]
     (when (>= (count labels) 3)
       (let [ns' (second labels)]
         (when (#{namespace-ipfs namespace-ipns} ns')

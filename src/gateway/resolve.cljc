@@ -31,7 +31,7 @@
   Everything under a name shares one resolution, so the cache is keyed on the
   name and not the URL, and a stale entry is served while the fresh one is
   fetched rather than making one request per TTL pay the full cost."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [gateway.cache :as cache]))
 
 (defn key-derived-name?
