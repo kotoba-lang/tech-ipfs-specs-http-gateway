@@ -35,7 +35,7 @@
   slightly-stale answer *immediately* and refresh behind it, so the expiry is
   invisible to the request that happens to land on it. Without it, one unlucky
   request per TTL per name pays the full resolution cost."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [gateway.request :as req]))
 
 (def ^:const immutable-max-age
