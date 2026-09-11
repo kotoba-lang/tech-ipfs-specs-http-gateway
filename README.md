@@ -131,7 +131,7 @@ validation.
 ## Test
 
 ```
-clojure -M:test
+kbb -M:test
 ```
 
 25 tests / 81 assertions.
